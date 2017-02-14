@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VIRS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+    <script src="/javascripts/angularApp.js"></script>
+
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body ng-app="VIRS">
+    
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <ui-view></ui-view>
+      </div>
+    </div>    
+    
+  <!--Home Page State -->
+     <script type="text/ng-template" id="/home.html">
+      <div ng-controller="MainCtrl">     
+          <h1>VIRS</h1>
+          <h2>Analyze your text</h2>
+
+          <div class="page-header">
+            <div class="col-sm-12 col-md-5">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <h3>Please upload picture here</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-5">
+              <div class="panel-group">
+                  <div class="panel panel-default">
+                    <div class="panel-body">   
+                      <h3>Insert your text here</h3>
+                    </div>
+                  </div>
+              </div>
+           </div>
+
+            <div class="col-sm-12 col-md-5">
+              <div class="panel-group">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <ul>
+                      <strong>
+                          <li><a href="#/k1">K1</a></li>
+                          <li><a>K2</a></li>
+                          <li><a>AWL</a></li>
+                          <li><a>Off List</a></li>
+                        </strong>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-12 col-md-5">
+                <div class="panel-group">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <h3>Empty placeholder</h3>
+                    </div>
+                  </div>
+                </div>
+               </div>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="/k1.html">
+          <div >
+            <h3>
+              Hello this is k1
+            </h3>
+            <div class="col-sm-12 col-md-5">
+              <div class="panel-group">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <div ng-repeat="word in words | orderBy: '-upvotes'">
+                      {{word.title}} - upvotes: {{word.upvotes}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </script>
+
+
+
+
+  </body>
+</html>
