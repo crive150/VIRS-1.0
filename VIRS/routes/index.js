@@ -8,11 +8,12 @@ router.get('/', function(req, res, next) {
 
 module.exports = router;
 
-// Express Routing
+
 /* Code written by Senior Project Team Begins */ 
+// Express Routing
 
 var mongoose = require('mongoose'); // Importing mongoose
-var Kone = mongoose.model(Kone); // Handle to Kone Schema
+var Kone = mongoose.model('Kone'); // Handle to Kone Schema
 
 
 // Retrieves all K1 words and returns a JSON list containing all the K1 words

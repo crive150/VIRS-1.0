@@ -7,4 +7,5 @@ var KoneSchema = new mongoose.Schema({
 
 });
 
-mongoose.model('Kone', PostSchema);
+mongoose.model('Kone', KoneSchema);
+
