@@ -8,11 +8,11 @@ function($scope){
 
 app.controller('K1Ctrl', [
 '$scope',
-'words',
+'k1',
 '$stateParams',
-function($scope, words, $stateParams){
+function($scope, k1, $stateParams){
   
-  $scope.words = words.words;
+  $scope.words = k1.words;
   $scope.addWord = function() {
     if(!$scope.title || $scope.title === ''){ return; }
     $scope.words.push({title: $scope.title, definition: $scope.definition, frequency: 1});

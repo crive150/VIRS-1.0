@@ -5,6 +5,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+/* Code written by Senior Project Team Begins */ 
+
+var mongoose = require('mongoose'); // Mongoose is our object modeling package for Node
+mongoose.connect('mongodb//localhost/virs'); // Connecting to the database
+
+require('./models/Kone');
+
+
+/* Code written by Senior Project Team Ends */ 
+
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 

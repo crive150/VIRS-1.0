@@ -1,6 +1,6 @@
 //Angular Services
 
-app.factory('words', [function(){
+app.factory('k1', [function(){
     var o = {
         words: []
     };
