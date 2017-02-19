@@ -36,6 +36,18 @@ router.post('/k1', function(req, res, next) {
   });
 });
 
+// Preloads kone objects
+router.param('kone', function(req, res, next, id){
+  var query = Kone.findById(id);
+
+  query.exec(function (err, kone){ 
+    if (err) { return next(err); }
+    if (!kone) { return next(new Error('can\'t find the K1 word')) }
+
+    req.kone = kone;
+    return next();
+  });
+});
 
 
 
