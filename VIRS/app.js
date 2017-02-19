@@ -6,10 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 
-var index = require('./routes/index');
-var users = require('./routes/users');
 
-var app = express();
 /* Code written by Senior Project Team Begins */ 
 
 var mongoose = require('mongoose'); // Mongoose is our object modeling package for Node
@@ -21,6 +18,11 @@ require('./models/Kone');
 
 /* Code written by Senior Project Team Ends */ 
 
+//Routes must be below model dependencies
+var index = require('./routes/index');
+var users = require('./routes/users');
+
+var app = express();
 
 
 

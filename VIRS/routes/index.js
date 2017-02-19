@@ -13,7 +13,7 @@ module.exports = router;
 // Express Routing
 
 var mongoose = require('mongoose'); // Importing mongoose
-var Kone = mongoose.model('Kone'); // Handle to Kone Schema
+var Kone = mongoose.model('Kone'); // The handle to Kone Schema
 
 
 // Retrieves all K1 words and returns a JSON list containing all the K1 words
@@ -25,10 +25,9 @@ router.get('/k1', function(req, res, next) { // Defining URL for the route k1
   });
 });
 
-
 // Creates a new k1 word and saves it in memory before saving it to the database
 router.post('/k1', function(req, res, next) {
-  var kone = new kone(req.body);
+  var kone = new Kone(req.body);
 
   kone.save(function(err, post){
     if(err){ return next(err); }
