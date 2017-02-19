@@ -79,13 +79,14 @@
             <h3>
               Hello this is k1
             </h3>
-            <div class="col-sm-12 col-md-5">
+            <div class="col-sm-12 col-md-10">
               <div class="panel-group">
                 <div class="panel panel-default">
                   <div class="panel-body">
                     <div ng-repeat="word in words | orderBy: '-upvotes'">
-                      {{word.title}} - upvotes: {{word.upvotes}}
+                      {{word.title}} - {{word.definition}} - frequency {{word.frequency}}
                     </div>
+                    <button ng-click="addWord()"> Add word </button>
                   </div>
                 </div>
               </div>
