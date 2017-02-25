@@ -3,11 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>VIRS</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
-    <script src="/javascripts/angularApp.js"></script>
-
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body ng-app="VIRS">
     
@@ -33,7 +28,7 @@
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-5">
+          <div class="col-sm-12 col-md-20">
               <div class="panel-group">
                   <div class="panel panel-default">
                     <div class="panel-body">   
@@ -43,7 +38,7 @@
               </div>
            </div>
 
-            <div class="col-sm-12 col-md-5">
+            <div class="col-sm-12 col-md-20">
               <div class="panel-group">
                 <div class="panel panel-default">
                   <div class="panel-body">
@@ -60,7 +55,7 @@
                 </div>
               </div>
 
-              <div class="col-sm-12 col-md-5">
+              <div class="col-sm-12 col-md-20">
                 <div class="panel-group">
                   <div class="panel panel-default">
                     <div class="panel-body">
@@ -74,25 +69,48 @@
 
         <script type="text/ng-template" id="/k1.html">
           <div >
-            <h3>
-              Hello this is k1
-            </h3>
-            <div class="col-sm-12 col-md-5">
+            <h2>
+               K1 WORDS
+            </h2>
+            <div class="col-sm-12 col-md-20">
               <div class="panel-group">
                 <div class="panel panel-default">
                   <div class="panel-body">
                     <div ng-repeat="word in words | orderBy: '-upvotes'">
-                      {{word.title}} - upvotes: {{word.upvotes}}
+                      {{word.title}} - {{word.definition}} - frequency {{word.frequency}}
                     </div>
+                    <form ng-submit="addWord()">
+                      <input type="text" placeholder="Word title"ng-model="title"></input>
+                      <br>
+                      <input type="text" placeholder="Definition" ng-model="definition"></input>
+                      <br>
+                      <button type="submit">Post</button>
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </script>
-
-
-
-
+        
   </body>
+    
+    <!-- External libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+    
+    <!-- Angular App -->
+    <script src="/javascripts/angularApp.js"></script>
+    
+    <!-- Angular Controllers -->
+    <script src="/javascripts/controllers.js"></script>
+    
+    <!-- Angular Routes -->
+    <script src="/javascripts/routes.js"></script>
+
+    <!-- Angular Services -->
+    <script src="/javascripts/services.js"></script>
+    
+    <!-- CSS stylesheets -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 </html>
