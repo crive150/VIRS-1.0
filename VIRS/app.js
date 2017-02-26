@@ -13,6 +13,7 @@ var mongoose = require('mongoose'); // Mongoose is our object modeling package f
 mongoose.connect('mongodb://localhost/virs'); // Connecting to the database
 
 require('./models/Kone');
+require('./models/Awl');
 
 
 

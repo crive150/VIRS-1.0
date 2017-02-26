@@ -13,10 +13,13 @@ module.exports = router;
 // Express Routing
 
 var mongoose = require('mongoose'); // Importing mongoose
+
 var Kone = mongoose.model('Kone'); // The handle to Kone Schema
+var Awl = mongoose.model('Awl'); //The handle to Awl schema
 
-
+/* ----------K1 ROUTES----------------*/
 // Retrieves all K1 words and returns a JSON list containing all the K1 words
+
 router.get('/k1', function(req, res, next) { // Defining URL for the route k1
   Kone.find(function(err, words){
     if(err){ return next(err); } // Error handling function
@@ -49,6 +52,37 @@ router.param('kone', function(req, res, next, id){
   });
 });
 
+/* ----------AWL ROUTES----------------*/
+router.get('/awl', function(req, res, next) { // Defining URL for the route awl
+  Awl.find(function(err, words){
+    if(err){ return next(err); } // Error handling function
 
+    res.json(words);
+  });
+});
+
+// Creates a new awl word and saves it in memory before saving it to the database
+router.post('/awl', function(req, res, next) {
+  var awl = new Awl(req.body);
+
+  awl.save(function(err, post){
+    if(err){ return next(err); }
+
+    res.json(awl);
+  });
+});
+
+// Preloads awl objects
+router.param('awl', function(req, res, next, id){
+  var query = Awl.findById(id);
+
+  query.exec(function (err, awl){ 
+    if (err) { return next(err); }
+    if (!awl) { return next(new Error('can\'t find the AWL word')) }
+
+    req.awl = awl;
+    return next();
+  });
+});
 
 /* Code written by Senior Project Team Ends */ 
