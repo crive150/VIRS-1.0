@@ -17,9 +17,9 @@ connection.connect();
 
 // Getting all data from table awl and passing it to awl front end
 router.get('/awl', (req, res, next)=>{
-  var queryFreq = 'SELECT * FROM freq WHERE freq="2"';
+  var queryAwl = 'SELECT * FROM freq WHERE freq="2"';
   
-  connection.query(queryFreq, (err, results, field)=>{
+  connection.query(queryAwl, (err, results, field)=>{
     if(err) console.log(err);
 
     let tempArray = [];
@@ -45,11 +45,58 @@ router.get('/awl', (req, res, next)=>{
   });
 });
 
-// Getting all data from table hi and passing it to k1 front end
+// Getting all data from table hi and passing it to k1 front end. 
+// Also known as high frequency words
 router.get('/k1', (req, res, next)=>{
-  var queryFreq = 'SELECT * FROM hi';
+  var queryHi = 'SELECT * FROM hi';
   
-  connection.query(queryFreq, (err, results, field)=>{
+  connection.query(queryHi, (err, results, field)=>{
+    if(err) console.log(err);
+
+    let tempArray = [];
+    var tempJSON = {};
+    
+    results.forEach((item, index) => {
+      tempJSON = {
+        "id" : results[index].id,
+        "word": results[index].word
+      };
+      tempArray.push(tempJSON);
+    });
+
+    res.json(tempArray);
+  });
+});
+
+// Getting all data from table med and passing it to k2 front end. 
+// Also known as medium frequency words
+router.get('/k2', (req, res, next)=>{
+  var queryMed = 'SELECT * FROM med';
+  
+  connection.query(queryMed, (err, results, field)=>{
+    if(err) console.log(err);
+
+    let tempArray = [];
+    var tempJSON = {};
+    
+    results.forEach((item, index) => {
+      tempJSON = {
+        "id" : results[index].id,
+        "word": results[index].word
+      };
+      tempArray.push(tempJSON);
+    });
+
+    res.json(tempArray);
+  });
+});
+
+// Getting all data from table med and passing it to k2 front end. 
+// Also known as medium frequency words
+router.get('/offlist', (req, res, next)=>{
+  var queryLow = 'SELECT * FROM lo';
+  
+  connection.query(queryLow, (err, results, field)=>{
     if(err) console.log(err);
 
     let tempArray = [];

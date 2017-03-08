@@ -14,7 +14,7 @@ a {
 }
 
 .header {
-  background-image: url("http://more-sky.com/data/out/9/IMG_357988.jpg");
+  /*background-image: url("");*/
   background-position: center center;
   background-size: cover;
   height: 700px;
@@ -22,6 +22,7 @@ a {
 }
 
 #header-text {
+  color: #FFF;
   margin: 0 auto;
   position: relative;
   text-align: center;
@@ -82,7 +83,7 @@ p {
 }
 
 .main {
-  background: url("https://images.freecreatives.com/wp-content/uploads/2016/02/Blue-Pattern-Background-For-Free-Download.jpg");
+  /*background: url("");*/
   margin: 0;
   padding: 40px;
 }
@@ -105,8 +106,22 @@ p {
 }
 
 .button {
-    padding: 15px 32px;
+    background-color: #4CAF50; /* Green */
+    border: 2px solid;
+    border-radius: 15px;
+    color: white;
+    padding: 15px 20px;
     text-align: center;
+    text-decoration: none;
     display: inline-block;
-    font-size: 24px;
+    font-size: 16px;
+    
+}
+ul {
+  list-style-type: none;
+}
+
+body {
+  background-image: url("http://wallpapercave.com/wp/NP7w5kc.jpg");
+
 }

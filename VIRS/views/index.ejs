@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!-- CSS stylesheets -->
+    <link href="/stylesheets/style.css" rel="stylesheet"/>
+    <link href="/stylesheets/bootstrap.css" rel="stylesheet">
 <head>
     <meta charset="UTF-8">
     <title>VIRS</title>
@@ -15,20 +18,22 @@
   <!--Home Page State -->
      <script type="text/ng-template" id="/home.html">
       <div ng-controller="MainCtrl">     
-        <div class ="header">
+
           <div id= "header-text">
             <h1>VIRS</h1>
             <h2>Analyze your text</h2>
             </div>
-          </div>
-          <div class="page-header">
+
+
+        <div >
+ 
             <div class="col-sm-12 col-md-5">
               <div class="panel panel-default">
                 <div class="panel-body">
                   <h3>Please upload picture here</h3>
                 </div>
               </div>
-            </div>
+
           </div>
 
           <div class="col-sm-12 col-md-20">
@@ -47,10 +52,10 @@
                   <div class="panel-body">
                     <ul>
                       <strong>
-                          <li><a href="#/k1">K1</a></li>
-                          <li><a>K2</a></li>
-                          <li><a href="#/awl">AWL</a></li>
-                          <li><a>Off List</a></li>
+                          <li><a href="#/k1"> <button type="submit" class="button">High frequency</button> </a></li>
+                          <li><a href="#/k2"> <button type="submit" class="button">Medium Frequency</button> </a></li>
+                          <li><a href="#/awl"> <button type="submit" class="button">AWL</button> </a></li>
+                          <li><a href="#/offlist"> <button type="submit" class="button">Low Frequency</button> </a></li>
                         </strong>
                       </ul>
                     </div>
@@ -68,6 +73,7 @@
                 </div>
                </div>
             </div>
+          </div>
         </script>
         
         <!--K1 words page state-->
@@ -75,6 +81,60 @@
           <div >
             <h2>
                K1 WORDS
+            </h2>
+            <div class="col-sm-12 col-md-20">
+              <div class="panel-group">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <div ng-repeat="word in words | orderBy: '-upvotes'">
+                      {{ word.word }}
+                    </div>
+                    <form ng-submit="addWord()">
+                      <input type="text" placeholder="Word title" ng-model="title"></input>
+                      <br>
+                      <input type="text" placeholder="Definition" ng-model="definition"></input>
+                      <br>
+                      <button type="submit">Post</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </script>
+
+        <!--K2 words page state-->
+        <script type="text/ng-template" id="/k2.html">
+          <div >
+            <h2>
+               K2 WORDS
+            </h2>
+            <div class="col-sm-12 col-md-20">
+              <div class="panel-group">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <div ng-repeat="word in words | orderBy: '-upvotes'">
+                      {{ word.word }}
+                    </div>
+                    <form ng-submit="addWord()">
+                      <input type="text" placeholder="Word title" ng-model="title"></input>
+                      <br>
+                      <input type="text" placeholder="Definition" ng-model="definition"></input>
+                      <br>
+                      <button type="submit">Post</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </script>
+
+        <!--Offlist words page state-->
+        <script type="text/ng-template" id="/offlist.html">
+          <div >
+            <h2>
+               Offlist WORDS
             </h2>
             <div class="col-sm-12 col-md-20">
               <div class="panel-group">
@@ -142,7 +202,5 @@
     <!-- Angular Services -->
     <script src="/javascripts/services.js"></script>
     
-    <!-- CSS stylesheets -->
-    <link href="/stylesheets/style.css" rel="stylesheet"/>
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    
 </html>

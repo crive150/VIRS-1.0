@@ -27,6 +27,27 @@ function($scope, k1){
   };
 }]);
 
+app.controller('K2Ctrl', [
+'$scope',
+'k2',
+function($scope, k2){
+  
+  $scope.words = k2.words;
+  $scope.addWord = function() {
+    if(!$scope.title || $scope.title === ''){ return; }
+    k2.create({
+      title: $scope.title, 
+      definition: $scope.definition, 
+      frequency: 1
+    });
+    $scope.incrementFrequency = function(k2) {
+      k2.incrementFrequency(word);
+    }
+    $scope.title = '';
+    $scope.definition = '';
+  };
+}]);
+
 app.controller('AWLCtrl', [
 '$scope',
 'awl',
@@ -42,6 +63,27 @@ function($scope, awl){
     });
     $scope.incrementFrequency = function(awl) {
       awl.incrementFrequency(word);
+    }
+    $scope.title = '';
+    $scope.definition = '';
+  };
+}]);
+
+app.controller('OfflistCtrl', [
+'$scope',
+'offlist',
+function($scope, offlist){
+  
+  $scope.words = offlist.words;
+  $scope.addWord = function() {
+    if(!$scope.title || $scope.title === ''){ return; }
+    offlist.create({
+      title: $scope.title, 
+      definition: $scope.definition, 
+      frequency: 1
+    });
+    $scope.incrementFrequency = function(offlist) {
+      offlist.incrementFrequency(word);
     }
     $scope.title = '';
     $scope.definition = '';
