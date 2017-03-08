@@ -15,9 +15,12 @@
   <!--Home Page State -->
      <script type="text/ng-template" id="/home.html">
       <div ng-controller="MainCtrl">     
-          <h1>VIRS</h1>
-          <h2>Analyze your text</h2>
-
+        <div class ="header">
+          <div id= "header-text">
+            <h1>VIRS</h1>
+            <h2>Analyze your text</h2>
+            </div>
+          </div>
           <div class="page-header">
             <div class="col-sm-12 col-md-5">
               <div class="panel panel-default">
@@ -78,7 +81,7 @@
                 <div class="panel panel-default">
                   <div class="panel-body">
                     <div ng-repeat="word in words | orderBy: '-upvotes'">
-                      {{word.title}} - {{word.definition}} - frequency {{word.frequency}}
+                      {{ word.word }}
                     </div>
                     <form ng-submit="addWord()">
                       <input type="text" placeholder="Word title" ng-model="title"></input>
@@ -105,7 +108,7 @@
                 <div class="panel panel-default">
                   <div class="panel-body">
                     <div ng-repeat="word in words | orderBy: '-upvotes'">
-                      {{word.title}} - {{word.definition}} - frequency {{word.frequency}}
+                      {{word.family}} 
                     </div>
                     <form ng-submit="addWord()">
                       <input type="text" placeholder="Word title" ng-model="title"></input>
@@ -140,5 +143,6 @@
     <script src="/javascripts/services.js"></script>
     
     <!-- CSS stylesheets -->
+    <link href="/stylesheets/style.css" rel="stylesheet"/>
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 </html>

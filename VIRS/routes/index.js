@@ -11,77 +11,59 @@ module.exports = router;
 
 /* Code written by Senior Project Team Begins */ 
 // Express Routing
+var connection = require('../models/Database'); // Importing conenction
+//Connect to mySQL Database
+connection.connect();
 
-var mongoose = require('mongoose'); // Importing mongoose
+// Getting all data from table awl and passing it to awl front end
+router.get('/awl', (req, res, next)=>{
+  var queryFreq = 'SELECT * FROM freq WHERE freq="2"';
+  
+  connection.query(queryFreq, (err, results, field)=>{
+    if(err) console.log(err);
 
-var Kone = mongoose.model('Kone'); // The handle to Kone Schema
-var Awl = mongoose.model('Awl'); //The handle to Awl schema
+    let tempArray = [];
+    var tempJSON = {};
 
-/* ----------K1 ROUTES----------------*/
-// Retrieves all K1 words and returns a JSON list containing all the K1 words
+    results.forEach((item, index) => {
+      tempJSON = {
+        "freq" : results[index].freq,
+        "family": results[index].family,
+        "member1" : results[index].member1,
+        "freq1" : results[index].freq1,
+        "member2" : results[index].member1,
+        "freq2" : results[index].freq1,
+        "member3" : results[index].member3,
+        "freq3" : results[index].freq3,
+        "member4" : results[index].member4,
+        "freq4" : results[index].freq4
+      };
+      tempArray.push(tempJSON);
+    });
 
-router.get('/k1', function(req, res, next) { // Defining URL for the route k1
-  Kone.find(function(err, words){
-    if(err){ return next(err); } // Error handling function
-
-    res.json(words);
+    res.json(tempArray);
   });
 });
 
-// Creates a new k1 word and saves it in memory before saving it to the database
-router.post('/k1', function(req, res, next) {
-  var kone = new Kone(req.body);
+// Getting all data from table hi and passing it to k1 front end
+router.get('/k1', (req, res, next)=>{
+  var queryFreq = 'SELECT * FROM hi';
+  
+  connection.query(queryFreq, (err, results, field)=>{
+    if(err) console.log(err);
 
-  kone.save(function(err, post){
-    if(err){ return next(err); }
+    let tempArray = [];
+    var tempJSON = {};
+    
+    results.forEach((item, index) => {
+      tempJSON = {
+        "id" : results[index].id,
+        "word": results[index].word
+      };
+      tempArray.push(tempJSON);
+    });
 
-    res.json(kone);
-  });
-});
-
-// Preloads kone objects
-router.param('kone', function(req, res, next, id){
-  var query = Kone.findById(id);
-
-  query.exec(function (err, kone){ 
-    if (err) { return next(err); }
-    if (!kone) { return next(new Error('can\'t find the K1 word')) }
-
-    req.kone = kone;
-    return next();
-  });
-});
-
-/* ----------AWL ROUTES----------------*/
-router.get('/awl', function(req, res, next) { // Defining URL for the route awl
-  Awl.find(function(err, words){
-    if(err){ return next(err); } // Error handling function
-
-    res.json(words);
-  });
-});
-
-// Creates a new awl word and saves it in memory before saving it to the database
-router.post('/awl', function(req, res, next) {
-  var awl = new Awl(req.body);
-
-  awl.save(function(err, post){
-    if(err){ return next(err); }
-
-    res.json(awl);
-  });
-});
-
-// Preloads awl objects
-router.param('awl', function(req, res, next, id){
-  var query = Awl.findById(id);
-
-  query.exec(function (err, awl){ 
-    if (err) { return next(err); }
-    if (!awl) { return next(new Error('can\'t find the AWL word')) }
-
-    req.awl = awl;
-    return next();
+    res.json(tempArray);
   });
 });
 
