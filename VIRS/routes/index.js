@@ -8,47 +8,109 @@ router.get('/', function(req, res, next) {
 
 module.exports = router;
 
-
-/* Code written by Senior Project Team Begins */ 
+/* ----------------------Code written by Senior Project Team Begins---------------------- */ 
 // Express Routing
+var connection = require('../models/Database'); // Importing conenction
+//Connect to mySQL Database
+connection.connect();
 
-var mongoose = require('mongoose'); // Importing mongoose
-var Kone = mongoose.model('Kone'); // The handle to Kone Schema
+// Getting all data from table hi and passing it to k1 front end. 
+// Also known as high frequency words
+router.get('/k1', (req, res, next)=>{
+  var queryHi = 'SELECT * FROM hi';
+  
+  connection.query(queryHi, (err, results, field)=>{
+    if(err) console.log(err);
 
+    let tempArray = [];
+    var tempJSON = {};
+    
+    results.forEach((item, index) => {
+      tempJSON = {
+        "id" : results[index].id,
+        "word": results[index].word
+      };
+      tempArray.push(tempJSON);
+    });
 
-// Retrieves all K1 words and returns a JSON list containing all the K1 words
-router.get('/k1', function(req, res, next) { // Defining URL for the route k1
-  Kone.find(function(err, words){
-    if(err){ return next(err); } // Error handling function
-
-    res.json(words);
+    res.json(tempArray);
   });
 });
 
-// Creates a new k1 word and saves it in memory before saving it to the database
-router.post('/k1', function(req, res, next) {
-  var kone = new Kone(req.body);
+// Getting all data from table med and passing it to k2 front end. 
+// Also known as medium frequency words
+router.get('/k2', (req, res, next)=>{
+  var queryMed = 'SELECT * FROM med';
+  
+  connection.query(queryMed, (err, results, field)=>{
+    if(err) console.log(err);
 
-  kone.save(function(err, post){
-    if(err){ return next(err); }
+    let tempArray = [];
+    var tempJSON = {};
+    
+    results.forEach((item, index) => {
+      tempJSON = {
+        "id" : results[index].id,
+        "word": results[index].word
+      };
+      tempArray.push(tempJSON);
+    });
 
-    res.json(kone);
+    res.json(tempArray);
   });
 });
 
-// Preloads kone objects
-router.param('kone', function(req, res, next, id){
-  var query = Kone.findById(id);
+// Getting all data from table med and passing it to k2 front end. 
+// Also known as medium frequency words
+router.get('/offlist', (req, res, next)=>{
+  var queryLow = 'SELECT * FROM lo';
+  
+  connection.query(queryLow, (err, results, field)=>{
+    if(err) console.log(err);
 
-  query.exec(function (err, kone){ 
-    if (err) { return next(err); }
-    if (!kone) { return next(new Error('can\'t find the K1 word')) }
+    let tempArray = [];
+    var tempJSON = {};
+    
+    results.forEach((item, index) => {
+      tempJSON = {
+        "id" : results[index].id,
+        "word": results[index].word
+      };
+      tempArray.push(tempJSON);
+    });
 
-    req.kone = kone;
-    return next();
+    res.json(tempArray);
   });
 });
 
+// Getting all data from table awl and passing it to awl front end
+router.get('/awl', (req, res, next)=>{
+  var queryAwl = 'SELECT * FROM freq WHERE freq="2"';
+  
+  connection.query(queryAwl, (err, results, field)=>{
+    if(err) console.log(err);
 
+    let tempArray = [];
+    var tempJSON = {};
+
+    results.forEach((item, index) => {
+      tempJSON = {
+        "freq" : results[index].freq,
+        "family": results[index].family,
+        "member1" : results[index].member1,
+        "freq1" : results[index].freq1,
+        "member2" : results[index].member1,
+        "freq2" : results[index].freq1,
+        "member3" : results[index].member3,
+        "freq3" : results[index].freq3,
+        "member4" : results[index].member4,
+        "freq4" : results[index].freq4
+      };
+      tempArray.push(tempJSON);
+    });
+
+    res.json(tempArray);
+  });
+});
 
 /* Code written by Senior Project Team Ends */ 

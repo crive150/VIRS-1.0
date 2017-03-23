@@ -1,8 +1,126 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
+}
+
+.body {
+  background-color: grey;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  /*background-image: url("");*/
+  background-position: center center;
+  background-size: cover;
+  height: 700px;
+  width: 100%;
+}
+
+#header-text {
+  color: #FFF;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  top: 25%;
+  width: 60%;
+}
+
+h1 {
+  color: #FFF;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 70px;
+  font-weight: 400;
+  line-height: 60px;
+  margin: 0;
+}
+
+h2 {
+  color: #FFF;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 100;
+}
+
+h3 {
+  color: #FFF;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 30px;
+  margin: 10px 0px;
+  text-align: center;
+}
+
+h4 {
+  color: #CCC;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+p {
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+  line-height: 24px;
+  margin: 0 auto;
+  text-align: center;
+  width: 60%;
+}
+
+.partner {
+  padding: 20px;
+  text-align: center;
+  margin: 0 auto;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.main {
+  /*background: url("");*/
+  margin: 0;
+  padding: 40px;
+}
+
+.value-props {
+  margin: 40px auto;
+  width: 60%;
+}
+
+.prop {
+  border: 1px solid #FFF;
+  padding: 40px 0px;
+  margin: 5px 0px;
+  text-align: center;
+}
+
+.prop h2 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 24px;
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: 2px solid;
+    border-radius: 15px;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    
+}
+ul {
+  list-style-type: none;
+}
+
+body {
+  background-image: url("http://wallpapercave.com/wp/NP7w5kc.jpg");
 }

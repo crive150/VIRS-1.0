@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!-- CSS stylesheets -->
+    <link href="/stylesheets/style.css" rel="stylesheet"/>
+    <link href="/stylesheets/bootstrap.css" rel="stylesheet">
 <head>
     <meta charset="UTF-8">
     <title>VIRS</title>
@@ -13,74 +16,125 @@
     </div>    
     
   <!--Home Page State -->
-     <script type="text/ng-template" id="/home.html">
-      <div ng-controller="MainCtrl">     
+    <script type="text/ng-template" id="/home.html">
+        <div id= "header-text">
+            <h1>VIRS</h1>
+        </div>
+        
+        <table class="table>">
+          <tr>
+            <td><a href="#/landing"> <button type="submit" class="button">K - G2</button></td>
+          </tr>
+          <tr>
+            <td><a href="#/landing"> <button type="submit" class="button">G3 - G5</button></td>
+          </tr>
+          <tr>
+            <td><a href="#/landing"> <button type="submit" class="button">G6 - G8</button></td>
+          </tr>
+          <tr>
+            <td><a href="#/landing"> <button type="submit" class="button">G9 - G12</button></td>
+          </tr>
+        </table>
+    </script>       
+
+  <!--Landing Page State -->
+     <script type="text/ng-template" id="/landing.html">
+        
+        <div id= "header-text">
           <h1>VIRS</h1>
           <h2>Analyze your text</h2>
+        </div>
 
-          <div class="page-header">
-            <div class="col-sm-12 col-md-5">
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <h3>Please upload picture here</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-12 col-md-20">
-              <div class="panel-group">
-                  <div class="panel panel-default">
-                    <div class="panel-body">   
-                      <h3>Insert your text here</h3>
-                    </div>
-                  </div>
-              </div>
-           </div>
-
-            <div class="col-sm-12 col-md-20">
-              <div class="panel-group">
-                <div class="panel panel-default">
-                  <div class="panel-body">
-                    <ul>
-                      <strong>
-                          <li><a href="#/k1">K1</a></li>
-                          <li><a>K2</a></li>
-                          <li><a>AWL</a></li>
-                          <li><a>Off List</a></li>
-                        </strong>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-sm-12 col-md-20">
+        <table class="table>">
+          <thead>
+            <tr>
+              <th>
                 <div class="panel-group">
                   <div class="panel panel-default">
                     <div class="panel-body">
-                      <h3>Empty placeholder</h3>
+                      <h3>Please upload picture here</h3>
                     </div>
                   </div>
                 </div>
-               </div>
+              <th>
+              <th>
+                <div class="panel-group">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <h3>Insert your text here</h3>
+                    </div>
+                  </div>
+                </div>
+              </th>
+            </tr>
+          <thead>
+        </table>
+            
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <table class="table">
+                    <thead>
+                      <strong>
+                          <th></th>
+                          <th><h3>Number of words</h3></th>
+                          <th><h3>Number of word families</h3></th>                       
+                      </strong>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><a href="#/k1"> <button type="submit" class="button">High frequency</button></a></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr> 
+                        <td><a href="#/k2"> <button type="submit" class="button">Medium Frequency</button></a></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr> 
+                        <td><a href="#/offlist"> <button type="submit" class="button">Low Frequency</button></a></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr> 
+                        <td><a href="#/awl"> <button type="submit" class="button">Academic Word List</button></a></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
+              
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <a href="#/enhanced"> <button type="submit" class="button"><h1>Proceed to Enhanced Text</h1></button></a>
+                </div>
+              </div>
+            </div>
+                     
         </script>
-
+        
+        <!--K1/High-Frequency Words page state-->
         <script type="text/ng-template" id="/k1.html">
           <div >
-            <h2>
-               K1 WORDS
-            </h2>
+            <div id="header-text">
+              <h2>
+                High-Frequency Words
+              </h2>
+            </div>
             <div class="col-sm-12 col-md-20">
               <div class="panel-group">
                 <div class="panel panel-default">
                   <div class="panel-body">
                     <div ng-repeat="word in words | orderBy: '-upvotes'">
-                      {{word.title}} - {{word.definition}} - frequency {{word.frequency}}
+                      {{ word.word }}
                     </div>
                     <form ng-submit="addWord()">
-                      <input type="text" placeholder="Word title"ng-model="title"></input>
+                      <input type="text" placeholder="Word title" ng-model="title"></input>
                       <br>
                       <input type="text" placeholder="Definition" ng-model="definition"></input>
                       <br>
@@ -88,6 +142,104 @@
                     </form>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </script>
+
+        <!--K2/Medium-Frequency Words page state-->
+        <script type="text/ng-template" id="/k2.html">
+          <div >
+            <div id="header-text">
+              <h2>
+                Medium-Frequency Words
+              </h2>
+            </div>
+            <div class="col-sm-12 col-md-20">
+              <div class="panel-group">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <div ng-repeat="word in words | orderBy: '-upvotes'">
+                      {{ word.word }}
+                    </div>
+                    <form ng-submit="addWord()">
+                      <input type="text" placeholder="Word title" ng-model="title"></input>
+                      <br>
+                      <input type="text" placeholder="Definition" ng-model="definition"></input>
+                      <br>
+                      <button type="submit">Post</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </script>
+
+        <!--Offlist/Low-Frequency Words page state-->
+        <script type="text/ng-template" id="/offlist.html">
+          <div>
+            <div id="header-text">
+              <h2>
+                Low-Frequency Words
+              </h2>
+            </div>
+            <div class="col-sm-12 col-md-20">
+              <div class="panel-group">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <div ng-repeat="word in words | orderBy: '-upvotes'">
+                      {{ word.word }}
+                    </div>
+                    <form ng-submit="addWord()">
+                      <input type="text" placeholder="Word title" ng-model="title"></input>
+                      <br>
+                      <input type="text" placeholder="Definition" ng-model="definition"></input>
+                      <br>
+                      <button type="submit">Post</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </script>
+
+        <!--AWL Words page state-->
+        <script type="text/ng-template" id="/awl.html">
+          <div>
+            <div id="header-text">
+              <h2>
+                Academic Word List
+              </h2>
+            </div>
+            <div class="col-sm-12 col-md-20">
+              <div class="panel-group">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <div ng-repeat="word in words | orderBy: '-upvotes'">
+                      {{word.family}} 
+                    </div>
+                    <form ng-submit="addWord()">
+                      <input type="text" placeholder="Word title" ng-model="title"></input>
+                      <br>
+                      <input type="text" placeholder="Definition" ng-model="definition"></input>
+                      <br>
+                      <button type="submit">Post</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </script>
+
+        <!--Enhanced Text page state-->
+        <script type="text/ng-template" id="/enhanced.html">
+          <div class="panel-group">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h1>Enhanced Text</h1>
               </div>
             </div>
           </div>
@@ -111,6 +263,5 @@
     <!-- Angular Services -->
     <script src="/javascripts/services.js"></script>
     
-    <!-- CSS stylesheets -->
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    
 </html>

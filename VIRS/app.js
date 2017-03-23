@@ -9,11 +9,8 @@ var bodyParser = require('body-parser');
 
 /* Code written by Senior Project Team Begins */ 
 
-var mongoose = require('mongoose'); // Mongoose is our object modeling package for Node
-mongoose.connect('mongodb://localhost/virs'); // Connecting to the database
-
-require('./models/Kone');
-
+// Set up MySQL connection
+require('./models/Database');
 
 
 /* Code written by Senior Project Team Ends */ 
