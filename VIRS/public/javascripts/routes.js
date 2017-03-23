@@ -10,6 +10,11 @@ app.config([
           templateUrl: '/home.html',
           controller: 'MainCtrl'
         })
+        .state('landing', { // State for landing page
+          url: '/landing',
+          templateUrl: '/landing.html',
+          controller: 'LandingCtrl'
+        })
         .state('k1', { // State for K1 aka High Frequency words
           url: '/k1',
           templateUrl: '/k1.html',
@@ -49,6 +54,11 @@ app.config([
               return offlist.getAll();
             }]
           }
+        })
+        .state('enhanced', { // State for landing page
+          url: '/enhanced',
+          templateUrl: '/enhanced.html',
+          controller: 'EnhancedCtrl'
         });
 
       $urlRouterProvider.otherwise('home');

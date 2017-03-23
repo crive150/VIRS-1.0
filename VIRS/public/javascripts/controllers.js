@@ -6,6 +6,12 @@ function($scope){
   
 }]);
 
+app.controller('LandingCtrl', [
+'$scope',
+function($scope){
+  
+}]);
+
 app.controller('K1Ctrl', [
 '$scope',
 'k1',
@@ -88,4 +94,10 @@ function($scope, offlist){
     $scope.title = '';
     $scope.definition = '';
   };
+}]);
+
+app.controller('EnhancedCtrl', [
+'$scope',
+function($scope){
+  
 }]);
