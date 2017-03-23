@@ -5,15 +5,15 @@ app.config([
   function($stateProvider, $urlRouterProvider) {
      
      $stateProvider
-        .state('home', {
+        .state('home', { //State for home page (Initial page)
           url: '/home',
           templateUrl: '/home.html',
-          controller: 'MainCtrl'
+          controller: 'HomeCtrl'
         })
-        .state('landing', { // State for landing page
+        .state('landing', { // State for Landing page
           url: '/landing',
           templateUrl: '/landing.html',
-          controller: 'LandingCtrl'
+          controller: 'MainCtrl'
         })
         .state('k1', { // State for K1 aka High Frequency words
           url: '/k1',
@@ -25,23 +25,13 @@ app.config([
             }]
           }
         })
-        .state('k2', { // State for K2 aka High Frequency words
+        .state('k2', { // State for K2 aka Medium Frequency words
           url: '/k2',
           templateUrl: '/k2.html',
           controller: 'K2Ctrl',
           resolve: {
             k2Promise: ['k2', function(k2){
               return k2.getAll();
-            }]
-          }
-        })
-        .state('awl', { // State for Academic Word List (awl)
-          url: '/awl',
-          templateUrl: '/awl.html',
-          controller: 'AWLCtrl',
-          resolve: {
-            awlPromise: ['awl', function(awl){
-              return awl.getAll();
             }]
           }
         })
@@ -55,7 +45,17 @@ app.config([
             }]
           }
         })
-        .state('enhanced', { // State for landing page
+        .state('awl', { // State for Academic Word List (AWL)
+          url: '/awl',
+          templateUrl: '/awl.html',
+          controller: 'AWLCtrl',
+          resolve: {
+            awlPromise: ['awl', function(awl){
+              return awl.getAll();
+            }]
+          }
+        })
+        .state('enhanced', { // State for Enhanced Text page
           url: '/enhanced',
           templateUrl: '/enhanced.html',
           controller: 'EnhancedCtrl'

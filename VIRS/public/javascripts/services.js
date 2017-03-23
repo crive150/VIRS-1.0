@@ -46,29 +46,6 @@ app.factory('k2', ['$http',function($http){
     return o;
 }]);
 
-// Service for AWL
-app.factory('awl', ['$http',function($http){
-    var o = {
-        words: []
-    };
-    o.getAll = function() { //Querying the backend for all awl words using the index route
-        return $http.get('/awl').success(function(data){ 
-            angular.copy(data, o.words) //Deep copy of returned data to keep the $scope data updated
-        });
-    };
-    o.create = function(awl) {
-        return $http.post('/awl', awl).success(function(data) {
-            o.words.push(data);
-        });
-    };
-    o.incrementFrequency = function (awl) {
-        return $http.put('/awl/' + word._id + '/frequency').success(function(data){
-            word.frequency += 1;
-        });
-    };
-    return o;
-}]);
-
 // Service for Offlist aka Low Frequency words
 app.factory('offlist', ['$http',function($http){
     var o = {
@@ -86,6 +63,29 @@ app.factory('offlist', ['$http',function($http){
     };
     o.incrementFrequency = function (offlist) {
         return $http.put('/offlist/' + word._id + '/frequency').success(function(data){
+            word.frequency += 1;
+        });
+    };
+    return o;
+}]);
+
+// Service for AWL
+app.factory('awl', ['$http',function($http){
+    var o = {
+        words: []
+    };
+    o.getAll = function() { //Querying the backend for all awl words using the index route
+        return $http.get('/awl').success(function(data){ 
+            angular.copy(data, o.words) //Deep copy of returned data to keep the $scope data updated
+        });
+    };
+    o.create = function(awl) {
+        return $http.post('/awl', awl).success(function(data) {
+            o.words.push(data);
+        });
+    };
+    o.incrementFrequency = function (awl) {
+        return $http.put('/awl/' + word._id + '/frequency').success(function(data){
             word.frequency += 1;
         });
     };
