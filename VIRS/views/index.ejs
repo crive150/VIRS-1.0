@@ -48,17 +48,9 @@
         <div class="panel-group">
             <div class="panel panel-default">
               <div class="panel-body">
-                
-                <form style="margin-top: 30px;" >
-                  <h3>Type your text</h3>
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Enter Text" ng-model="Text"> </input>
-                  </div>
-
-                  <button type="submit" class="btn btn-primary" >Process Text<button>
-                </form>
-
-
+                <h3>Type your text</h3>
+                <input class="form-control" placeholder="Enter Text" ng-model="text"> </input>
+                <button ng-click="processText()" class="btn btn-primary">Process Text</button>  
               </div>
             </div>
           </div>
@@ -102,22 +94,22 @@
                     <tbody>
                       <tr>
                         <td><a href="#/k1"> <button type="submit" class="button">High frequency</button></a></td>
-                        <td></td>
+                        <td>{{ amountHighFrequency }}</td>
                         <td></td>
                       </tr>
                       <tr> 
                         <td><a href="#/k2"> <button type="submit" class="button">Medium Frequency</button></a></td>
-                        <td></td>
+                        <td>{{ amountMedFrequency }}</td>
                         <td></td>
                       </tr>
                       <tr> 
                         <td><a href="#/offlist"> <button type="submit" class="button">Low Frequency</button></a></td>
-                        <td></td>
+                        <td> {{ amountLowFrequency }}</td>
                         <td></td>
                       </tr>
                       <tr> 
                         <td><a href="#/awl"> <button type="submit" class="button">Academic Word List</button></a></td>
-                        <td></td>
+                        <td>{{ amountAWLFrequency }}</td>
                         <td></td>
                       </tr>
                     </tbody>
@@ -148,16 +140,9 @@
               <div class="panel-group">
                 <div class="panel panel-default">
                   <div class="panel-body">
-                    <div ng-repeat="word in words | orderBy: '-upvotes'">
-                      {{ word.word }}
+                    <div ng-repeat="word in text">
+                        {{ word.words }}
                     </div>
-                    <form ng-submit="addWord()">
-                      <input type="text" placeholder="Word title" ng-model="title"></input>
-                      <br>
-                      <input type="text" placeholder="Definition" ng-model="definition"></input>
-                      <br>
-                      <button type="submit">Post</button>
-                    </form>
                   </div>
                 </div>
               </div>
@@ -177,16 +162,9 @@
               <div class="panel-group">
                 <div class="panel panel-default">
                   <div class="panel-body">
-                    <div ng-repeat="word in words | orderBy: '-upvotes'">
-                      {{ word.word }}
+                    <div ng-repeat="word in text">
+                        {{ word.words }}
                     </div>
-                    <form ng-submit="addWord()">
-                      <input type="text" placeholder="Word title" ng-model="title"></input>
-                      <br>
-                      <input type="text" placeholder="Definition" ng-model="definition"></input>
-                      <br>
-                      <button type="submit">Post</button>
-                    </form>
                   </div>
                 </div>
               </div>
@@ -206,16 +184,9 @@
               <div class="panel-group">
                 <div class="panel panel-default">
                   <div class="panel-body">
-                    <div ng-repeat="word in words | orderBy: '-upvotes'">
-                      {{ word.word }}
+                    <div ng-repeat="word in text">
+                        {{ word.words }}
                     </div>
-                    <form ng-submit="addWord()">
-                      <input type="text" placeholder="Word title" ng-model="title"></input>
-                      <br>
-                      <input type="text" placeholder="Definition" ng-model="definition"></input>
-                      <br>
-                      <button type="submit">Post</button>
-                    </form>
                   </div>
                 </div>
               </div>
@@ -235,16 +206,9 @@
               <div class="panel-group">
                 <div class="panel panel-default">
                   <div class="panel-body">
-                    <div ng-repeat="word in words | orderBy: '-upvotes'">
-                      {{word.family}} 
+                    <div ng-repeat="word in text">
+                        {{ word.words }}
                     </div>
-                    <form ng-submit="addWord()">
-                      <input type="text" placeholder="Word title" ng-model="title"></input>
-                      <br>
-                      <input type="text" placeholder="Definition" ng-model="definition"></input>
-                      <br>
-                      <button type="submit">Post</button>
-                    </form>
                   </div>
                 </div>
               </div>
@@ -258,6 +222,9 @@
             <div class="panel panel-default">
               <div class="panel-body">
                 <h1>Enhanced Text</h1>
+                <span ng-repeat="text in texts">
+                  <span ng-class="text.words.color"> {{ text.words.word }} </span>
+                </span>
               </div>
             </div>
           </div>
