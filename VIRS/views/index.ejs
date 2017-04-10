@@ -5,30 +5,28 @@
     <link href="/stylesheets/bootstrap.css" rel="stylesheet">
 <head>
     <meta charset="UTF-8">
-    <title>VIRS</title>
+    <title>VIR</title>
   </head>
   <body ng-app="VIRS">
     
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
+        <img src="/images/VIR_logo.jpg" alt="V.I.R. Logo" class="logo">
         <ui-view></ui-view>
       </div>
     </div>    
     
   <!--Home Page State -->
     <script type="text/ng-template" id="/home.html">
-        <div id= "header-text">
-            <h1>VIRS</h1>
-        </div>
         
         <table class="table>">
-          <tr>
+          <tr>            
             <td><a href="#/landing"> <button type="submit" class="button">K - G2</button></td>
           </tr>
-          <tr>
+          <tr>            
             <td><a href="#/landing"> <button type="submit" class="button">G3 - G5</button></td>
           </tr>
-          <tr>
+          <tr>           
             <td><a href="#/landing"> <button type="submit" class="button">G6 - G8</button></td>
           </tr>
           <tr>
@@ -41,7 +39,6 @@
      <script type="text/ng-template" id="/landing.html">
         
         <div id= "header-text">
-          <h1>VIRS</h1>
           <h2>Analyze your text</h2>
         </div>
         
@@ -62,7 +59,18 @@
                 <div class="panel-group">
                   <div class="panel panel-default">
                     <div class="panel-body">
-                      <h3>Please upload picture here</h3>
+                      <h3> Insert Image File</h3>
+                      <h3>Reads on File Select</h3>
+                      <button class = "btn btn-warning" type="file" ngf-select=""
+                              accept="all/*" ngf-pattern=".jpg" ngf-max-height="2000" ngf-max-size="10MB">
+                          Select Image File</button>
+                      <br><br>
+                      File:
+                      <div style="font:smaller">
+                        {{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+                      </div>     
+                      {{errorMsg}}
+                      <button ng-click="" class="btn btn-primary">Process Text</button> 
                     </div>
                   </div>
                 </div>
@@ -71,7 +79,18 @@
                 <div class="panel-group">
                   <div class="panel panel-default">
                     <div class="panel-body">
-                      <h3>Insert your text here</h3>
+                      <h3>Insert PDF File</h3>
+                      <h3>Reads on File Select</h3>
+                      <button class = "btn btn-warning" type="file" ngf-select="uploadFiles($file, $invalidFiles)"
+                              accept="pdf/*" ngf-pattern=".pdf,.jpg" ngf-max-height="2000" ngf-max-size="10MB">
+                          Select PDF File</button>
+                      <br><br>
+                      File:
+                      <div style="font:smaller">
+                        {{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+                      </div>     
+                      {{errorMsg}}
+                      <button ng-click="processPDFText()" class="btn btn-primary">Process Text</button> 
                     </div>
                   </div>
                 </div>
@@ -247,6 +266,15 @@
 
     <!-- Angular Services -->
     <script src="/javascripts/services.js"></script>
-    
-    
+
+    <!-- ng-file-upload library for uploading file into the App -->
+    <!-- Source: https://github.com/danialfarid/ng-file-upload -->
+    <script src="/javascripts/ng-file-upload-shim.js"></script>
+    <script src="/javascripts/ng-file-upload.js"></script>
+
+    <!-- pdf.js library for scanning pdf files in the App -->
+    <!-- Source: https://github.com/mozilla/pdf.js -->
+    <script src="/javascripts/pdf.js"></script>
+       
+
 </html>

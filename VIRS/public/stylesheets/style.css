@@ -74,6 +74,13 @@ p {
   width: 60%;
 }
 
+.logo {
+  border-radius: 25px;
+  display: block;
+  margin: auto;
+}
+
+
 .high {
   color: blue;
 }
@@ -140,4 +147,28 @@ ul {
 
 body {
   background-image: url("http://wallpapercave.com/wp/NP7w5kc.jpg");
+}
+
+.thumb {
+    width: 24px;
+    height: 24px;
+    float: none;
+    position: relative;
+    top: 7px;
+}
+
+form .progress {
+    line-height: 15px;
+}
+
+.progress {
+    display: inline-block;
+    width: 100px;
+    border: 3px groove #CCC;
+}
+
+.progress div {
+    font-size: smaller;
+    background: orange;
+    width: 0;
 }
