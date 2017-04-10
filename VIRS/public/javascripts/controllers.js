@@ -24,6 +24,11 @@ function($scope, k1, k2, offlist, awl, enhanced, Upload, $timeout){
   $scope.AWL = awl.words;
   $scope.completeText = [{ word: String, color: String }];
 
+  $scope.amountHighFrequency = k1.wordCount;
+  $scope.amountMedFrequency = k2.wordCount; 
+  $scope.amountLowFrequency = offlist.wordCount;
+  $scope.amountAWLFrequency = awl.wordCount;
+
   
  // Code for implementing PDF Scan ------------------------------------------------
  var pdfToText = function(data) {

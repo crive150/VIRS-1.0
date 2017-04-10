@@ -67,9 +67,7 @@
                       <br><br>
                       File:
                       <div style="font:smaller">
-                        {{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
-                      </div>     
-                      {{errorMsg}}
+                      </div> 
                       <button ng-click="" class="btn btn-primary">Process Text</button> 
                     </div>
                   </div>
@@ -82,7 +80,7 @@
                       <h3>Insert PDF File</h3>
                       <h3>Reads on File Select</h3>
                       <button class = "btn btn-warning" type="file" ngf-select="uploadFiles($file, $invalidFiles)"
-                              accept="pdf/*" ngf-pattern=".pdf,.jpg" ngf-max-height="2000" ngf-max-size="10MB">
+                              accept="pdf/*" ngf-pattern=".pdf" ngf-max-height="2000" ngf-max-size="10MB">
                           Select PDF File</button>
                       <br><br>
                       File:
@@ -113,22 +111,22 @@
                     <tbody>
                       <tr>
                         <td><a href="#/k1"> <button type="submit" class="button">High frequency</button></a></td>
-                        <td>{{ amountHighFrequency }}</td>
+                        <td><h3>{{ amountHighFrequency }}</td></h3>
                         <td></td>
                       </tr>
                       <tr> 
                         <td><a href="#/k2"> <button type="submit" class="button">Medium Frequency</button></a></td>
-                        <td>{{ amountMedFrequency }}</td>
+                        <td><h3>{{ amountMedFrequency }}</td></h3>
                         <td></td>
                       </tr>
                       <tr> 
                         <td><a href="#/offlist"> <button type="submit" class="button">Low Frequency</button></a></td>
-                        <td> {{ amountLowFrequency }}</td>
+                        <td><h3>{{ amountLowFrequency }}</td></h3>
                         <td></td>
                       </tr>
                       <tr> 
                         <td><a href="#/awl"> <button type="submit" class="button">Academic Word List</button></a></td>
-                        <td>{{ amountAWLFrequency }}</td>
+                        <td><h3>{{ amountAWLFrequency }}</td></h3>
                         <td></td>
                       </tr>
                     </tbody>
@@ -237,10 +235,13 @@
 
         <!--Enhanced Text page state-->
         <script type="text/ng-template" id="/enhanced.html">
+        <div id="header-text">
+          <h1>Enhanced Text</h1>
+        </div>
           <div class="panel-group">
             <div class="panel panel-default">
               <div class="panel-body">
-                <h1>Enhanced Text</h1>
+                
                 <span ng-repeat="text in texts">
                   <span ng-class="text.words.color"> {{ text.words.word }} </span>
                 </span>
