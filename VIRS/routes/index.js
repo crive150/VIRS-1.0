@@ -85,7 +85,7 @@ router.get('/offlist', (req, res, next)=>{
 
 // Getting all data from table awl and passing it to awl front end
 router.get('/awl', (req, res, next)=>{
-  var queryAwl = 'SELECT * FROM freq WHERE freq="2"';
+  var queryAwl = 'SELECT * FROM awl';
   
   connection.query(queryAwl, (err, results, field)=>{
     if(err) console.log(err);
@@ -95,16 +95,8 @@ router.get('/awl', (req, res, next)=>{
 
     results.forEach((item, index) => {
       tempJSON = {
-        "freq" : results[index].freq,
-        "family": results[index].family,
-        "member1" : results[index].member1,
-        "freq1" : results[index].freq1,
-        "member2" : results[index].member1,
-        "freq2" : results[index].freq1,
-        "member3" : results[index].member3,
-        "freq3" : results[index].freq3,
-        "member4" : results[index].member4,
-        "freq4" : results[index].freq4
+        "id" : results[index].id,
+        "word": results[index].word
       };
       tempArray.push(tempJSON);
     });

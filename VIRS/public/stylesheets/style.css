@@ -65,7 +65,6 @@ h4 {
 }
 
 p {
-  color: white;
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   font-weight: 100;
@@ -74,6 +73,31 @@ p {
   text-align: center;
   width: 60%;
 }
+
+.logo {
+  border-radius: 25px;
+  display: block;
+  margin: auto;
+}
+
+
+.high {
+  color: blue;
+}
+
+.med {
+  color: hotpink;
+}
+
+.low {
+  color: red;
+}
+
+.awl {
+  color: lawngreen;
+}
+
+
 
 .partner {
   padding: 20px;
@@ -123,4 +147,28 @@ ul {
 
 body {
   background-image: url("http://wallpapercave.com/wp/NP7w5kc.jpg");
+}
+
+.thumb {
+    width: 24px;
+    height: 24px;
+    float: none;
+    position: relative;
+    top: 7px;
+}
+
+form .progress {
+    line-height: 15px;
+}
+
+.progress {
+    display: inline-block;
+    width: 100px;
+    border: 3px groove #CCC;
+}
+
+.progress div {
+    font-size: smaller;
+    background: orange;
+    width: 0;
 }

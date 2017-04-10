@@ -1,4 +1,4 @@
-var app = angular.module('VIRS', ['ui.router']);
+var app = angular.module('VIRS', ['ui.router', 'ngFileUpload']);
 
 
 
