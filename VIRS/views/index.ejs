@@ -8,39 +8,59 @@
     <title>VIR</title>
   </head>
   <body ng-app="VIRS">
+    <div class="panel-group">
+      <div class="panel">
+        <div class="panel-body inner-background">
+          
+          <nav>
+            <ul>
+              <li><a class="active" href="#/home">Home</a></li>
+              <li><a href="#/landing">Landing</a></li>
+              <li><a href="#/k1">High Frequency</a></li>
+              <li><a href="#/k2">Medium Frequency</a></li>
+              <li><a href="#/offlist">Low Frequency</a></li>
+              <li><a href="#/awl">Academic Word List</a></li>
+              <li><a href="#/enhanced">Enhanced Text</a></li>
+            </ul>
+          </nav>
     
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <img src="/images/VIR_logo.jpg" alt="V.I.R. Logo" class="logo">
-        <ui-view></ui-view>
+        <div style="margin-left:10%;padding:1px 16px;height:600px;">
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3"> 
+              <ui-view></ui-view>
+            </div>
+          </div>    
+        </div>
+
       </div>
     </div>    
-    
+  </div>
+
   <!--Home Page State -->
     <script type="text/ng-template" id="/home.html">
-        
-        <table class="table>">
-          <tr>            
-            <td><a href="#/landing"> <button type="submit" class="button">K - G2</button></td>
-          </tr>
-          <tr>            
-            <td><a href="#/landing"> <button type="submit" class="button">G3 - G5</button></td>
-          </tr>
-          <tr>           
-            <td><a href="#/landing"> <button type="submit" class="button">G6 - G8</button></td>
-          </tr>
-          <tr>
-            <td><a href="#/landing"> <button type="submit" class="button">G9 - G12</button></td>
-          </tr>
-        </table>
+        <div>
+          <img src="/images/VIR_logo.jpg" alt="V.I.R. Logo" class="logo">
+        </div>
+        <div class="partner">
+          <h4>
+            <a href="#/landing"> <button type="submit" class="home-button">Proceed to Analyze</button></a>
+          </h4>
+        </div>
+   
     </script>       
 
   <!--Landing Page State -->
      <script type="text/ng-template" id="/landing.html">
-        
-        <div id= "header-text">
-          <h2>Analyze your text</h2>
+     
+      <div class="panel-group">
+        <div class="panel">
+          <div class="panel-body">
+            <div id= "header-text">
+              <h1>Analyze Your Text</h1>
+            </div>
+          </div>
         </div>
+      </div>
         
         <div class="panel-group">
             <div class="panel panel-default">
@@ -60,10 +80,9 @@
                   <div class="panel panel-default">
                     <div class="panel-body">
                       <h3> Insert Image File</h3>
-                      <h3>Reads on File Select</h3>
-                      <button class = "btn btn-warning" type="file" ngf-select=""
+                      <input src="/images/jpglogo.png" style="width:100px; height:100px;" type="image" value="file" ngf-select=""
                               accept="all/*" ngf-pattern=".jpg" ngf-max-height="2000" ngf-max-size="10MB">
-                          Select Image File</button>
+                      </input>
                       <br><br>
                       File:
                       <div style="font:smaller">
@@ -78,10 +97,9 @@
                   <div class="panel panel-default">
                     <div class="panel-body">
                       <h3>Insert PDF File</h3>
-                      <h3>Reads on File Select</h3>
-                      <button class = "btn btn-warning" type="file" ngf-select="uploadFiles($file, $invalidFiles)"
+                      <input src="/images/pdflogo.jpeg" style="width:100px; height:100px;" type="image" value="file" ngf-select="uploadFiles($file, $invalidFiles)"
                               accept="pdf/*" ngf-pattern=".pdf" ngf-max-height="2000" ngf-max-size="10MB">
-                          Select PDF File</button>
+                      </input>
                       <br><br>
                       File:
                       <div style="font:smaller">
@@ -99,152 +117,224 @@
             
             <div class="panel-group">
               <div class="panel panel-default">
-                <div class="panel-body">
-                  <table class="table">
+                
+                  <table class="table ">
                     <thead>
                       <strong>
                           <th></th>
                           <th><h3>Number of words</h3></th>
-                          <th><h3>Number of word families</h3></th>                       
+                          <th><th>               
                       </strong>
                     </thead>
                     <tbody>
                       <tr>
                         <td><a href="#/k1"> <button type="submit" class="button">High frequency</button></a></td>
-                        <td><h3>{{ amountHighFrequency }}</td></h3>
+                        <td><h3>{{ amountHighFrequency }}</h3></td>
                         <td></td>
                       </tr>
                       <tr> 
                         <td><a href="#/k2"> <button type="submit" class="button">Medium Frequency</button></a></td>
-                        <td><h3>{{ amountMedFrequency }}</td></h3>
+                        <td><h3>{{ amountMedFrequency }}</h3></td>
                         <td></td>
                       </tr>
                       <tr> 
                         <td><a href="#/offlist"> <button type="submit" class="button">Low Frequency</button></a></td>
-                        <td><h3>{{ amountLowFrequency }}</td></h3>
+                        <td><h3>{{ amountLowFrequency }}</h3></td>
                         <td></td>
                       </tr>
                       <tr> 
                         <td><a href="#/awl"> <button type="submit" class="button">Academic Word List</button></a></td>
-                        <td><h3>{{ amountAWLFrequency }}</td></h3>
+                        <td><h3>{{ amountAWLFrequency }}</h3></td>
                         <td></td>
                       </tr>
                     </tbody>
                   </table>
-                </div>
+                
               </div>
             </div>
-              
-            <div class="panel-group">
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <a href="#/enhanced"> <button type="submit" class="button"><h1>Proceed to Enhanced Text</h1></button></a>
-                </div>
-              </div>
-            </div>
-                     
+            <a href="#/enhanced"> <button type="submit" class="button">Proceed to Enhanced Text</button></a>
+                 
         </script>
         
         <!--K1/High-Frequency Words page state-->
-        <script type="text/ng-template" id="/k1.html">
-          <div >
-            <div id="header-text">
-              <h2>
-                High-Frequency Words
-              </h2>
-            </div>
-            <div class="col-sm-12 col-md-20">
-              <div class="panel-group">
-                <div class="panel panel-default">
-                  <div class="panel-body">
-                    <div ng-repeat="word in text">
-                        {{ word.words }}
-                    </div>
-                  </div>
-                </div>
+      <script type="text/ng-template" id="/k1.html">
+       
+        <div class="panel-group">
+          <div class="panel">
+            <div class="panel-body">
+              <div id="header-text">
+                <h1>High-Frequency Words</h1>
               </div>
             </div>
           </div>
+        </div>
+
+              <div class="panel-group">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <table class="table ">
+                      <thead>
+                        <strong>
+                          <th>Word</th>
+                          <th>Type</th>
+                          <th>Definition</th>                                                         
+                        </strong>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="word in words">
+                          <td>{{ word.word }}</td>
+                          <td>{{ word.wordtype }}</td>
+                          <td>{{ word.definition }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            
         </script>
 
         <!--K2/Medium-Frequency Words page state-->
         <script type="text/ng-template" id="/k2.html">
-          <div >
-            <div id="header-text">
-              <h2>
-                Medium-Frequency Words
-              </h2>
-            </div>
-            <div class="col-sm-12 col-md-20">
-              <div class="panel-group">
-                <div class="panel panel-default">
-                  <div class="panel-body">
-                    <div ng-repeat="word in text">
-                        {{ word.words }}
-                    </div>
-                  </div>
-                </div>
+        <div class="panel-group">
+          <div class="panel">
+            <div class="panel-body">
+              <div id="header-text">
+                <h1>Medium-Frequency Words</h1>
+               </div>
               </div>
             </div>
           </div>
+
+              <div class="panel-group">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <table class="table ">
+                      <thead>
+                        <strong>
+                          <th>Word</th>
+                          <th>Type</th>
+                          <th>Definition</th>                                                         
+                        </strong>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="word in words">
+                          <td>{{ word.word }}</td>
+                          <td>{{ word.wordtype }}</td>
+                          <td>{{ word.definition }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+          
         </script>
 
         <!--Offlist/Low-Frequency Words page state-->
         <script type="text/ng-template" id="/offlist.html">
-          <div>
-            <div id="header-text">
-              <h2>
-                Low-Frequency Words
-              </h2>
-            </div>
-            <div class="col-sm-12 col-md-20">
-              <div class="panel-group">
-                <div class="panel panel-default">
-                  <div class="panel-body">
-                    <div ng-repeat="word in text">
-                        {{ word.words }}
-                    </div>
-                  </div>
-                </div>
+          
+        <div class="panel-group">
+          <div class="panel">
+            <div class="panel-body">
+              <div id="header-text">
+                <h1>Low-Frequency Words</h1>
+               </div>
               </div>
             </div>
           </div>
+            
+              <div class="panel-group">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <table class="table ">
+                      <thead>
+                        <strong>
+                          <th>Word</th>
+                          <th>Type</th>
+                          <th>Definition</th>                                                         
+                        </strong>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="word in words">
+                          <td>{{ word.word }}</td>
+                          <td>{{ word.wordtype }}</td>
+                          <td>{{ word.definition }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+          
         </script>
 
         <!--AWL Words page state-->
         <script type="text/ng-template" id="/awl.html">
-          <div>
-            <div id="header-text">
-              <h2>
-                Academic Word List
-              </h2>
-            </div>
-            <div class="col-sm-12 col-md-20">
-              <div class="panel-group">
-                <div class="panel panel-default">
-                  <div class="panel-body">
-                    <div ng-repeat="word in text">
-                        {{ word.words }}
-                    </div>
-                  </div>
-                </div>
+        <div class="panel-group">
+          <div class="panel">
+            <div class="panel-body">
+              <div id="header-text">
+                <h1>Academic World List</h1>
+               </div>
               </div>
             </div>
           </div>
+
+              <div class="panel-group">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <table class="table ">
+                      <thead>
+                        <strong>
+                          <th>Word</th>
+                          <th>Type</th>
+                          <th>Definition</th>                                                         
+                        </strong>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="word in words">
+                          <td>{{ word.word }}</td>
+                          <td>{{ word.wordtype }}</td>
+                          <td>{{ word.definition }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+        
         </script>
 
         <!--Enhanced Text page state-->
         <script type="text/ng-template" id="/enhanced.html">
-        <div id="header-text">
-          <h1>Enhanced Text</h1>
-        </div>
+        <div class="panel-group">
+          <div class="panel">
+            <div class="panel-body">
+              <div id="header-text">
+                <h1>Enhanced Text</h1>
+               </div>
+              </div>
+            </div>
+          </div>
           <div class="panel-group">
             <div class="panel panel-default">
               <div class="panel-body">
-                
-                <span ng-repeat="text in texts">
-                  <span ng-class="text.words.color"> {{ text.words.word }} </span>
-                </span>
+                <table class="table ">
+                  <thead>
+                    <strong>
+                      <th class="high"> High Frequency</th>
+                      <th class="med"> Medium Frequency</th>        
+                      <th class="low"> Low Frequency</th>   
+                      <th class="awl"> AWL</th>                                                    
+                    </strong>
+                  </thead>
+                </table>
+                <p>
+                  <span ng-repeat="text in texts">
+                    <span ng-class="text.words.color"> {{ text.words.word }} </span>
+                  </span>
+                </p>
               </div>
             </div>
           </div>

@@ -7,10 +7,9 @@ a {
     color: #00B7FF;
 }
 
-.body {
-  background-color: grey;
-  margin: 0;
-  padding: 0;
+
+.d-background {
+  background-color: lightblue;
 }
 
 .header {
@@ -22,7 +21,7 @@ a {
 }
 
 #header-text {
-  color: #FFF;
+  color: black;
   margin: 0 auto;
   position: relative;
   text-align: center;
@@ -31,7 +30,7 @@ a {
 }
 
 h1 {
-  color: #FFF;
+  color: black;
   font-family: 'Quicksand', sans-serif;
   font-size: 70px;
   font-weight: 400;
@@ -40,15 +39,15 @@ h1 {
 }
 
 h2 {
-  color: #FFF;
-  font-family: 'Open Sans', sans-serif;
+  color: black;
+  font-family: 'Titillium web', sans-serif;
   text-align: center;
   font-size: 28px;
   font-weight: 100;
 }
 
 h3 {
-  color: #FFF;
+  color: black;
   font-family: 'Quicksand', sans-serif;
   font-size: 28px;
   font-weight: 400;
@@ -58,20 +57,14 @@ h3 {
 }
 
 h4 {
-  color: #CCC;
+  color: black;
   font-family: 'Quicksand', sans-serif;
   font-size: 16px;
   font-weight: 300;
 }
 
 p {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
-  font-weight: 100;
-  line-height: 24px;
-  margin: 0 auto;
-  text-align: center;
-  width: 60%;
+  font-size: 20px;
 }
 
 .logo {
@@ -94,10 +87,8 @@ p {
 }
 
 .awl {
-  color: lawngreen;
+  color: limegreen;
 }
-
-
 
 .partner {
   padding: 20px;
@@ -110,6 +101,7 @@ p {
   /*background: url("");*/
   margin: 0;
   padding: 40px;
+  color: black;
 }
 
 .value-props {
@@ -118,6 +110,7 @@ p {
 }
 
 .prop {
+  color: #CCC;
   border: 1px solid #FFF;
   padding: 40px 0px;
   margin: 5px 0px;
@@ -127,13 +120,14 @@ p {
 .prop h2 {
   font-family: 'Quicksand', sans-serif;
   font-size: 24px;
+  color: #CCC;
 }
 
 .button {
-    background-color: #4CAF50; /* Green */
+    background-color: lightblue;
     border: 2px solid;
     border-radius: 15px;
-    color: white;
+    color: black;
     padding: 15px 20px;
     text-align: center;
     text-decoration: none;
@@ -141,20 +135,57 @@ p {
     font-size: 16px;
     
 }
-ul {
-  list-style-type: none;
+
+.home-button {
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 24px;
+  border-radius: 15px;
+  color: lightblue;
+  background-color: grey;
+  border-color: lightblue;
 }
 
 body {
-  background-image: url("http://wallpapercave.com/wp/NP7w5kc.jpg");
+    margin: 0;
 }
 
-.thumb {
-    width: 24px;
-    height: 24px;
-    float: none;
-    position: relative;
-    top: 7px;
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    background-color: grey;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+li a {
+    display: block;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+li a.active {
+    background-color: lightblue;
+    color: white
+}
+
+li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+body {
+  background-image: url("/images/outerbackground.png");
+}
+
+.inner-background {
+  background-image: url("/images/innerbackground.jpg");
+  background-color: lightgray;
 }
 
 form .progress {
