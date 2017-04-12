@@ -105,4 +105,27 @@ router.get('/awl', (req, res, next)=>{
   });
 });
 
+router.get('/dictionary/:word', (req, res, next)=>{
+  console.log("Word in route is: " + req.params.word);
+  var theWord = req.params.word;
+  var queryAwl = 'SELECT * FROM dict where word = "' + theWord +'"';
+  
+  connection.query(queryAwl, (err, results, field)=>{
+    if(err) console.log(err);
+
+    var tempJSON = {};
+
+    results.forEach((item, index) => {
+      tempJSON = {
+        "id" : results[index].id,
+        "word" : results[index].word,
+        "wordtype": results[index].wordtype,
+        "definition":results[index].definition
+      };
+    });
+    console.log(tempJSON);
+    res.json(tempJSON);
+  });
+});
+
 /* Code written by Senior Project Team Ends */ 

@@ -29,8 +29,7 @@ function($scope, k1, k2, offlist, awl, enhanced, Upload, $timeout){
   $scope.amountLowFrequency = offlist.wordCount;
   $scope.amountAWLFrequency = awl.wordCount;
 
-  
- // Code for implementing PDF Scan ------------------------------------------------
+ // Method for implementing PDF Scan ------------------------------------------------
  var pdfToText = function(data) {
     	return PDFJS.getDocument(data).then(function(pdf) {
         	var pages = [];
@@ -52,7 +51,8 @@ function($scope, k1, k2, offlist, awl, enhanced, Upload, $timeout){
 	}
 
 /* ---------------------------------- Code for implementing file upload Begins ------------------------------------ */
-  var removeEmpty = function(word) {
+  // Auxillary function for removing empty elements in array.
+  var removeEmpty = function(word) { 
     return word != "";
   }
   /* ------------------ Using neg-file-upload.js -------------------*/
@@ -114,7 +114,48 @@ function($scope, k1, k2, offlist, awl, enhanced, Upload, $timeout){
     enhanced.setEnhanced(words);
   }
 
-/* --------------- TEXT BOX PROCESSING -------------------- */
+  // Auxillary functions for setting color
+  var setHighColor = function() {
+    for(var i = 0; i < $scope.completeText.length; i++){
+      for(var j=0; j< k1.textWords.length; j++){
+        if($scope.completeText[i].word === k1.textWords[j].words) {
+          $scope.completeText[i].color = k1.textWords[j].color;
+        }
+      }
+     }
+  }
+
+  var setMedColor = function() {
+    for(var i = 0; i < $scope.textWords.length; i++){
+      for(var j=0; j< k2.textWords.length; j++){
+        if($scope.completeText[i].word === k2.textWords[j].words) {
+          $scope.completeText[i].color = k2.textWords[j].color;
+        }
+      }
+     }
+  }
+
+  var setLowColor = function() {
+    for(var i = 0; i < $scope.textWords.length; i++){
+      for(var j=0; j< offlist.textWords.length; j++){
+        if($scope.completeText[i].word === offlist.textWords[j].words) {
+          $scope.completeText[i].color = offlist.textWords[j].color;
+        }
+      }
+     }
+  }
+
+  var setAWLColor = function() {
+    for(var i = 0; i < $scope.textWords.length; i++){
+      for(var j=0; j< awl.textWords.length; j++){
+        if($scope.completeText[i].word === awl.textWords[j].words) {
+          $scope.completeText[i].color = awl.textWords[j].color;
+        }
+      }
+     }
+  }
+
+/* --------------- METHOD FOR TEXT BOX PROCESSING -------------------- */
   $scope.processText = function() { 
 
     console.log($scope.text + " "+ $scope.text.length); 
@@ -130,34 +171,12 @@ function($scope, k1, k2, offlist, awl, enhanced, Upload, $timeout){
     countAWLFreq($scope.textWords);
 
 /* Setting appropriate color for each word */
-    for(var i = 0; i < $scope.completeText.length; i++){
-      for(var j=0; j< k1.textWords.length; j++){
-        if($scope.completeText[i].word === k1.textWords[j].words) {
-          $scope.completeText[i].color = k1.textWords[j].color;
-        }
-      }
-     }
-     for(var i = 0; i < $scope.textWords.length; i++){
-      for(var j=0; j< k2.textWords.length; j++){
-        if($scope.completeText[i].word === k2.textWords[j].words) {
-          $scope.completeText[i].color = k2.textWords[j].color;
-        }
-      }
-     }
-     for(var i = 0; i < $scope.textWords.length; i++){
-      for(var j=0; j< offlist.textWords.length; j++){
-        if($scope.completeText[i].word === offlist.textWords[j].words) {
-          $scope.completeText[i].color = offlist.textWords[j].color;
-        }
-      }
-     }
-     for(var i = 0; i < $scope.textWords.length; i++){
-      for(var j=0; j< awl.textWords.length; j++){
-        if($scope.completeText[i].word === awl.textWords[j].words) {
-          $scope.completeText[i].color = awl.textWords[j].color;
-        }
-      }
-     }
+    
+     setHighColor();
+     setMedColor();
+     setLowColor();
+     setAWLColor();
+
     setEnhancedText($scope.completeText);
     console.log("Printing elements of the array completeText:");
     for(var i = 0; i < $scope.completeText.length; i++){
@@ -165,7 +184,7 @@ function($scope, k1, k2, offlist, awl, enhanced, Upload, $timeout){
      }
   };
 
-/* ----------------------- PDF PROCESSING --------------------------- */
+/* ----------------------- METHOD FOR PDF PROCESSING --------------------------- */
   $scope.processPDFText = function() { 
     $scope.textWords = $scope.pdfWords;
 
@@ -178,37 +197,11 @@ function($scope, k1, k2, offlist, awl, enhanced, Upload, $timeout){
     countAWLFreq($scope.textWords);
 
 /* Setting appropriate color for each word */
-    for(var i = 0; i < $scope.completeText.length; i++){
-      for(var j=0; j< k1.textWords.length; j++){
-        if($scope.completeText[i].word === k1.textWords[j].words) {
-          $scope.completeText[i].color = k1.textWords[j].color;
-        }
-      }
-     }
+    setHighColor();
+    setMedColor();
+    setLowColor();
+    setAWLColor();
 
-     for(var i = 0; i < $scope.textWords.length; i++){
-      for(var j=0; j< k2.textWords.length; j++){
-        if($scope.completeText[i].word === k2.textWords[j].words) {
-          $scope.completeText[i].color = k2.textWords[j].color;
-        }
-      }
-     }
-
-     for(var i = 0; i < $scope.textWords.length; i++){
-      for(var j=0; j< offlist.textWords.length; j++){
-        if($scope.completeText[i].word === offlist.textWords[j].words) {
-          $scope.completeText[i].color = offlist.textWords[j].color;
-        }
-      }
-     }
-
-     for(var i = 0; i < $scope.textWords.length; i++){
-      for(var j=0; j< awl.textWords.length; j++){
-        if($scope.completeText[i].word === awl.textWords[j].words) {
-          $scope.completeText[i].color = awl.textWords[j].color;
-        }
-      }
-     }
     setEnhancedText($scope.completeText);
     console.log("Printing elements of the array completeText:");
     for(var i = 0; i < $scope.completeText.length; i++){
@@ -222,19 +215,36 @@ function($scope, k1, k2, offlist, awl, enhanced, Upload, $timeout){
 app.controller('K1Ctrl', [
 '$scope',
 'k1',
-function($scope, k1){
+'dictionary',
+function($scope, k1, dictionary){
   
   $scope.text = k1.textWords;
-  
+  $scope.words = dictionary.high; // Acquiring data in the dictionary
+
+  var definition = function() {
+    for(var i = 0; i < $scope.text.length; i++) {
+      dictionary.getHighData($scope.text[i].words); // Calling factory to push data only for the words in the list
+    }
+  }
+  definition();
 }]);
 
 /* Contoller for Medium Frequency aka K2 page */
 app.controller('K2Ctrl', [
 '$scope',
 'k2',
-function($scope, k2){
+'dictionary',
+function($scope, k2, dictionary){
   
   $scope.text = k2.textWords;
+  $scope.words = dictionary.med; // Acquiring data in the dictionary
+
+  var definition = function() {
+    for(var i = 0; i < $scope.text.length; i++) {
+      dictionary.getMedData($scope.text[i].words); // Calling factory to push data only for the words in the list
+    }
+  }
+  definition();
   
 }]);
 
@@ -242,9 +252,18 @@ function($scope, k2){
 app.controller('OfflistCtrl', [
 '$scope',
 'offlist',
-function($scope, offlist){
+'dictionary',
+function($scope, offlist, dictionary){
   
   $scope.text = offlist.textWords;
+  $scope.words = dictionary.low; // Acquiring data in the dictionary
+
+  var definition = function() {
+    for(var i = 0; i < $scope.text.length; i++) {
+      dictionary.getLowData($scope.text[i].words); // Calling factory to push data only for the words in the list
+    }
+  }
+  definition();
   
 }]);
 
@@ -252,9 +271,18 @@ function($scope, offlist){
 app.controller('AWLCtrl', [
 '$scope',
 'awl',
-function($scope, awl){
+'dictionary',
+function($scope, awl, dictionary){
   
   $scope.text = awl.textWords;
+  $scope.words = dictionary.awl; // Acquiring data in the dictionary
+
+  var definition = function() {
+    for(var i = 0; i < $scope.text.length; i++) {
+      dictionary.getAWLData($scope.text[i].words); // Calling factory to push data only for the words in the list
+    }
+  }
+  definition();
 
 }]);
 

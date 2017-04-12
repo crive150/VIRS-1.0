@@ -1,4 +1,5 @@
-// Angular Routing
+
+// Angular Routing for ui.router
 app.config([
   '$stateProvider',
   '$urlRouterProvider',
