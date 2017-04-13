@@ -14,20 +14,37 @@ app.controller('MainCtrl', [
 'offlist',
 'awl',
 'enhanced',
+'dictionary',
 'Upload', // From ng-file-upload
 '$timeout', // From ng-file-upload
-function($scope, k1, k2, offlist, awl, enhanced, Upload, $timeout){
+function($scope, k1, k2, offlist, awl, enhanced, dictionary, Upload, $timeout){
 
-  $scope.K1Words = k1.words;
-  $scope.K2Words = k2.words;
-  $scope.Offlist = offlist.words;
-  $scope.AWL = awl.words;
-  $scope.completeText = [{ word: String, color: String }];
+  $scope.K1Words = k1;
+  $scope.K2Words = k2;
+  $scope.Offlist = offlist;
+  $scope.AWL = awl;
+  $scope.completeText = [];
 
   $scope.amountHighFrequency = k1.wordCount;
   $scope.amountMedFrequency = k2.wordCount; 
   $scope.amountLowFrequency = offlist.wordCount;
   $scope.amountAWLFrequency = awl.wordCount;
+
+  var definition = function() {
+    for(var i = 0; i < k1.textWords.length; i++) {
+      dictionary.getHighData(k1.textWords[i].words); // Calling factory to push data only for the words in the list
+    }
+    for(var i = 0; i < k2.textWords.length; i++) {
+      dictionary.getMedData(k2.textWords[i].words); // Calling factory to push data only for the words in the list
+    }
+    for(var i = 0; i < offlist.textWords.length; i++) {
+      dictionary.getLowData(offlist.textWords[i].words); // Calling factory to push data only for the words in the list
+    }
+    for(var i = 0; i < awl.textWords.length; i++) {
+      dictionary.getAWLData(awl.textWords[i].words); // Calling factory to push data only for the words in the list
+    }
+  }
+  
 
  // Method for implementing PDF Scan ------------------------------------------------
  var pdfToText = function(data) {
@@ -128,7 +145,7 @@ function($scope, k1, k2, offlist, awl, enhanced, Upload, $timeout){
   var setMedColor = function() {
     for(var i = 0; i < $scope.textWords.length; i++){
       for(var j=0; j< k2.textWords.length; j++){
-        if($scope.completeText[i].word === k2.textWords[j].words) {
+        if($scope.completeText[i].word === k2.textWords[j].words) {  
           $scope.completeText[i].color = k2.textWords[j].color;
         }
       }
@@ -157,8 +174,12 @@ function($scope, k1, k2, offlist, awl, enhanced, Upload, $timeout){
 
 /* --------------- METHOD FOR TEXT BOX PROCESSING -------------------- */
   $scope.processText = function() { 
+    if(!$scope.text || $scope.text === '') { return; } // If empty then nothing happens
 
-    console.log($scope.text + " "+ $scope.text.length); 
+    dictionary.reset(); // Clears content in the dictionary factory in services.js
+
+    console.log($scope.text + " "+ $scope.text.length);
+    $scope.text = $scope.text.replace(/[^a-zA-Z]/g," ");
     $scope.textWords = $scope.text.toLowerCase().split(" ");
 
     for(var i = 0; i < $scope.textWords.length; i++){
@@ -170,43 +191,48 @@ function($scope, k1, k2, offlist, awl, enhanced, Upload, $timeout){
     countLowFreq($scope.textWords);
     countAWLFreq($scope.textWords);
 
-/* Setting appropriate color for each word */
+    /* Setting appropriate color for each word */
     
      setHighColor();
      setMedColor();
      setLowColor();
      setAWLColor();
 
-    setEnhancedText($scope.completeText);
-    console.log("Printing elements of the array completeText:");
-    for(var i = 0; i < $scope.completeText.length; i++){
-      console.log($scope.completeText[i]);
+     console.log("In controller:");
+     for(var i = 0; i < $scope.completeText.length; i++){
+      console.log("Word:"+$scope.completeText[i].word + " Color:"+ $scope.completeText[i].word);
      }
+     
+
+    setEnhancedText($scope.completeText);
+    definition();
   };
 
 /* ----------------------- METHOD FOR PDF PROCESSING --------------------------- */
   $scope.processPDFText = function() { 
+    if(!$scope.pdfWords|| $scope.pdfWords === '') { return; } // If empty then nothing happens
+    
+    dictionary.reset(); // Clears content in the dictionary factory in services.js
+    
     $scope.textWords = $scope.pdfWords;
-
+    
     for(var i = 0; i < $scope.textWords.length; i++){
       $scope.completeText.push({word: $scope.textWords[i], color:''});
      }
+
     countHighFreq($scope.textWords);
     countMedFreq($scope.textWords);
     countLowFreq($scope.textWords);
     countAWLFreq($scope.textWords);
 
-/* Setting appropriate color for each word */
+    /* Setting appropriate color for each word */
     setHighColor();
     setMedColor();
     setLowColor();
     setAWLColor();
 
     setEnhancedText($scope.completeText);
-    console.log("Printing elements of the array completeText:");
-    for(var i = 0; i < $scope.completeText.length; i++){
-      console.log($scope.completeText[i]);
-     }
+    definition();
   };
 
 }]);
@@ -220,13 +246,7 @@ function($scope, k1, dictionary){
   
   $scope.text = k1.textWords;
   $scope.words = dictionary.high; // Acquiring data in the dictionary
-
-  var definition = function() {
-    for(var i = 0; i < $scope.text.length; i++) {
-      dictionary.getHighData($scope.text[i].words); // Calling factory to push data only for the words in the list
-    }
-  }
-  definition();
+  
 }]);
 
 /* Contoller for Medium Frequency aka K2 page */
@@ -239,13 +259,6 @@ function($scope, k2, dictionary){
   $scope.text = k2.textWords;
   $scope.words = dictionary.med; // Acquiring data in the dictionary
 
-  var definition = function() {
-    for(var i = 0; i < $scope.text.length; i++) {
-      dictionary.getMedData($scope.text[i].words); // Calling factory to push data only for the words in the list
-    }
-  }
-  definition();
-  
 }]);
 
 /* Contoller for Low Frequency aka Offlist page */
@@ -257,13 +270,6 @@ function($scope, offlist, dictionary){
   
   $scope.text = offlist.textWords;
   $scope.words = dictionary.low; // Acquiring data in the dictionary
-
-  var definition = function() {
-    for(var i = 0; i < $scope.text.length; i++) {
-      dictionary.getLowData($scope.text[i].words); // Calling factory to push data only for the words in the list
-    }
-  }
-  definition();
   
 }]);
 
@@ -276,13 +282,6 @@ function($scope, awl, dictionary){
   
   $scope.text = awl.textWords;
   $scope.words = dictionary.awl; // Acquiring data in the dictionary
-
-  var definition = function() {
-    for(var i = 0; i < $scope.text.length; i++) {
-      dictionary.getAWLData($scope.text[i].words); // Calling factory to push data only for the words in the list
-    }
-  }
-  definition();
 
 }]);
 
