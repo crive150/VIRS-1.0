@@ -18,7 +18,7 @@ app.factory('k1', ['$http',function($http){
     o.countHighFreq = function(words) {
         o.wordCount = 0;
         o.textWords = [];
-        console.log("Scanning text and comparing with K1");
+        // Scanning text and comparing with K1
         for( var i = 0; i < o.words.length; i++ ){ // Array holding all high freq words
             for( var j = 0; j < words.length; j++ ){ // Array holding text inputted by user
                 if(o.words[i].word === words[j]) {
@@ -49,7 +49,6 @@ app.factory('k2', ['$http',function($http){
     o.countMedFreq = function(words) {
         o.wordCount = 0;
         o.textWords = [{words: '', color: ''}];
-        console.log("Scanning text and comparing with K2");
         for( var i = 0; i < o.words.length; i++ ){ // Array holding all medium freq words
             for( var j = 0; j < words.length; j++ ){ // Array holding text inputted by user
                 //console.log(o.words[i].word);
@@ -81,7 +80,6 @@ app.factory('offlist', ['$http',function($http){
     o.countLowFreq = function(words) {
         o.wordCount = 0;
         o.textWords = [];
-        console.log("Scanning text and comparing with Offlist");
         for( var i = 0; i < o.words.length; i++ ){ // Array holding all low freq words
             for( var j = 0; j < words.length; j++ ){ // Array holding text inputted by user
                 if(o.words[i].word === words[j]) {
@@ -112,7 +110,6 @@ app.factory('awl', ['$http',function($http){
     o.countAWLFreq = function(words) {
         o.wordCount = 0;
         o.textWords = [];
-        console.log("Scanning text and comparing with AWL");
         for( var i = 0; i < o.words.length; i++ ){ // Array holding all awl words
             for( var j = 0; j < words.length; j++ ){ // Array holding text inputted by user  
                 if(o.words[i].word === words[j]) {
@@ -153,41 +150,37 @@ app.factory('dictionary', ['$http',function($http){
         awl:[] 
     };
 
-    o.getAll = function() { //Querying the backend for all awl words using the index route
-        return $http.get('/dictionary').success(function(data){ 
-            angular.copy(data, o.words) //Deep copy of returned data to keep the $scope data updated
-        });
+    o.reset = function() {
+        o.high = [];
+        o.med = [];
+        o.low = [];
+        o.awl = [];
     };
 
     o.getHighData = function(word) {
-        console.log("Looking for DEFINITION for word: " + word);
+        //console.log("Looking for DEFINITION for word: " + word);
         return $http.get('/dictionary/' + word).then(function(res){
-            o.high.push(res.data);
+            o.high.push({theword: word, wordtype:res.data.wordtype, definition:res.data.definition});
         });
     };
 
     o.getMedData = function(word) {
-        console.log("Looking for DEFINITION for word: " + word);
         return $http.get('/dictionary/' + word).then(function(res){
-            o.med.push(res.data);
+            o.med.push({theword: word, wordtype:res.data.wordtype, definition:res.data.definition});
         });
     };
 
     o.getLowData = function(word) {
-        console.log("Looking for DEFINITION for word: " + word);
         return $http.get('/dictionary/' + word).then(function(res){
-            o.low.push(res.data);
+            o.low.push({theword: word, wordtype:res.data.wordtype, definition:res.data.definition});
         });
     };
 
     o.getAWLData = function(word) {
-        console.log("Looking for DEFINITION for word: " + word);
         return $http.get('/dictionary/' + word).then(function(res){
-            o.awl.push(res.data);
+            o.awl.push({theword: word, wordtype:res.data.wordtype, definition:res.data.definition});
         });
     };
-
-    
 
     return o;
 }]);
