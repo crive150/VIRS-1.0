@@ -18,7 +18,7 @@ app.factory('k1', ['$http',function($http){
     o.countHighFreq = function(words) {
         o.wordCount = 0;
         o.textWords = [];
-        //console.log("Scanning text and comparing with K1");
+        // Scanning text and comparing with K1
         for( var i = 0; i < o.words.length; i++ ){ // Array holding all high freq words
             for( var j = 0; j < words.length; j++ ){ // Array holding text inputted by user
                 if(o.words[i].word === words[j]) {

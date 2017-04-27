@@ -178,7 +178,6 @@ function($scope, k1, k2, offlist, awl, enhanced, dictionary, Upload, $timeout){
 
     dictionary.reset(); // Clears content in the dictionary factory in services.js
 
-    console.log($scope.text + " "+ $scope.text.length);
     $scope.text = $scope.text.replace(/[^a-zA-Z]/g," ");
     $scope.textWords = $scope.text.toLowerCase().split(" ");
 
@@ -197,13 +196,7 @@ function($scope, k1, k2, offlist, awl, enhanced, dictionary, Upload, $timeout){
      setMedColor();
      setLowColor();
      setAWLColor();
-
-     console.log("In controller:");
-     for(var i = 0; i < $scope.completeText.length; i++){
-      console.log("Word:"+$scope.completeText[i].word + " Color:"+ $scope.completeText[i].word);
-     }
      
-
     setEnhancedText($scope.completeText);
     definition();
   };
